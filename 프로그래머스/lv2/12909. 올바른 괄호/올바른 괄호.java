@@ -33,7 +33,7 @@ class Solution {
         boolean answer = false;
         Stack stack = new Stack();
         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == 'a'){
+            if (s.charAt(i) == '('){
                 stack.push(s.charAt(i));
             } else {
                 if (stack.isEmpty()){

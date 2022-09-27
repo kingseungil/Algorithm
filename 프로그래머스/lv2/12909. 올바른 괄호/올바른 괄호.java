@@ -48,3 +48,32 @@ class Solution {
         return answer;
     }
 }
+
+// stack사용한 풀이 (시간초과)
+import java.util.Stack;
+
+class Solution {
+    boolean solution(String s){
+        boolean answer = true;
+        Stack stack = new Stack();
+        
+        for(String ss : s.split("")){
+            if(ss.equals("(")){
+                stack.push(ss);
+            } else {
+                if(stack.isEmpty()){
+                    answer = false;
+                    break;
+                } else {
+                    stack.pop();
+                }
+            }
+        }
+        if(answer == true && stack.isEmpty()){
+            answer = true; 
+        } else {
+            answer = false;
+        }
+        return answer;
+    }
+}

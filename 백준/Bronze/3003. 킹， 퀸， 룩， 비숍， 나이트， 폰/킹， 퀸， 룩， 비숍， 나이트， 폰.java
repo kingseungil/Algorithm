@@ -15,6 +15,7 @@ class Main {
                 output[i] = 0;
             }
         }
+        sc.close();
         for (int i = 0; i < output.length; i++) {
             System.out.print(output[i] + " ");
         }

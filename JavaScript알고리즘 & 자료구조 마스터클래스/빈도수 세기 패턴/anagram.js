@@ -27,4 +27,4 @@ if (!lookup[letter]) {
 
 console.log(anagrams("anagram", "nagaram"));
 
-// tip!! for문을 중첩하지 않고 두개의 for문을 만들어서 O(n)으로 해결
+// tip!! for문을 중첩하지 않고 두개의 for문을 만들어서 O()으로 해결

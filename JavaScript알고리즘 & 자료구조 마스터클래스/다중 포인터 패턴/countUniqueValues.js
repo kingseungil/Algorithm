@@ -1,3 +1,10 @@
+/**
+ * i와 j라는 포인터를 두어 (j의 index가 1이 더 큰 상태로)
+ * arr[i], arr[j]가 같지 않으면 i가 j를 따라가는 형태
+ * arr[i]값을 arr[j]값으로 바꿔주면서 따라가기 때문에
+ * 마지막엔 arr[i]값의 index에 1을 더해주면 개수가 나오게된다.
+*/
+
 function countUniqueValues(arr) {
   if (arr.length === 0) {
     return 0;

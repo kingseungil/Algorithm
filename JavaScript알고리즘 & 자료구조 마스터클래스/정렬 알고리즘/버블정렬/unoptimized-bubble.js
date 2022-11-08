@@ -1,3 +1,4 @@
+// 최적화 하지 않았을때는 O(n^2)
 // 매우 비효율적
 // function bubbleSort(arr) {
 //   for (let i = 0; i < arr.length; i++) {

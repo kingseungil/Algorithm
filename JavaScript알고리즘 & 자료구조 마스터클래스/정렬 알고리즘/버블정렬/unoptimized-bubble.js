@@ -38,13 +38,13 @@ function bubbleSort(arr) {
   };
   for (let i = arr.length; i > 0; i--) {
     for (let j = 0; j < i - 1; j++) {
-			console.log(arr,arr[j],arr[j + 1]);
+      console.log(arr,arr[j],arr[j + 1]);
       if (arr[j] >arr[j + 1]) {
-			// SWAP!
-				swap(arr, j, j + 1);
+      // SWAP!
+         swap(arr, j, j + 1);
       }
     }
-		console.log("ONE PASS COMPLETE!");
+   console.log("ONE PASS COMPLETE!");
   }
   return arr;
 }

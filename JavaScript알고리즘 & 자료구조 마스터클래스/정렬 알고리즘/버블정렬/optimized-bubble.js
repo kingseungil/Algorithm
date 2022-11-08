@@ -3,6 +3,7 @@
 //정렬이 완료된 후에도 계속 루프가 돌기때문
 // => noSwaps을 이용해서 최적화
 // 교환을 하지 않으면 true
+// 이 경우엔 O(n)
 
 // ES5
 function bubbleSort(arr) {

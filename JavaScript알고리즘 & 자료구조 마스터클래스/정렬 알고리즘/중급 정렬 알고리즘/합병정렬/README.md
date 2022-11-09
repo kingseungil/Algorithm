@@ -6,3 +6,6 @@
 ## 의사코드 (pseudocode)
 ![image](https://user-images.githubusercontent.com/109774037/200726096-7f157a43-4f20-4466-baec-baf15eb3b1d6.png)
 ![image](https://user-images.githubusercontent.com/109774037/200726152-91887f9d-ef39-4660-8fec-c64d2b855912.png)
+---
+## Big O
+![image](https://user-images.githubusercontent.com/109774037/200726360-c119f57d-726d-4604-b273-1586ba2946bc.png)

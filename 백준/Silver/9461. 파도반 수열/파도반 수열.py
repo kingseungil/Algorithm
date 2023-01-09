@@ -8,4 +8,5 @@ for i in range(1,98):
     dp[i+3]=dp[i]+dp[i+1]
 
 for i in range(T):
-    print(dp[int(input())])
+    N = int(input())
+    print(dp[N])

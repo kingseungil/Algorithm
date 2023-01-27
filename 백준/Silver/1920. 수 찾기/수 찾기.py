@@ -1,23 +1,12 @@
-N = int(input())
-N_list = list(map(int, input().split()))
-M = int(input())
-M_list = list(map(int, input().split()))
-N_list.sort()
+import sys
 
-def binary_search(value, start, end):
-    if start > end:
-        return False
-    
-    mid = (start + end) // 2
-    if N_list[mid] > value:
-        return binary_search(value, start, mid - 1)
-    elif N_list[mid] < value:
-        return binary_search(value, mid + 1, end)
+N = int(sys.stdin.readline().strip())
+N_set = set(map(int, sys.stdin.readline().split()))
+M = int(sys.stdin.readline().strip())
+M_list = list(map(int,sys.stdin.readline().split()))
+
+for i in M_list:
+    if i not in N_set:
+        print(0)
     else:
-        return True
-        
-for item in M_list:
-    if binary_search(item, 0, N - 1):
-        print (1)
-    else:
-        print (0)     
+        print(1)

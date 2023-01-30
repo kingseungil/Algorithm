@@ -2,8 +2,6 @@ import sys
 test_case = int(sys.stdin.readline().strip())
 
 # 루트를 찾아주는 함수 find
-
-
 def find(x):
     if x == parent[x]:  # 자기 자신이 루트 -> 아직 연결X
         return x
@@ -13,13 +11,10 @@ def find(x):
         return parent[x]
 
 # 두 집합을 연결해주는 함수 union
-
-
 def union(x, y):
     x, y = find(x), find(y)
 
     # 부모 노드를 합쳐서 하나의 집합으로 만들어줌
-    # 작은 루트 노드를 기준으로 합침
     if x != y:
         parent[y] = x
         number[x] += number[y]

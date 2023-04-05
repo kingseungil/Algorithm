@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const input = fs.readFileSync('/dev/stdin').toString().trim().split(' ');
+const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 // 풀이
 function solution(arr) {

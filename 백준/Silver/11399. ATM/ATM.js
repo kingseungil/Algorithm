@@ -6,12 +6,11 @@ const n = +input[0];
 const arr = input[1].split(' ').map(Number);
 arr.sort((a, b) => a - b);
 
-const pfs = [];
+let result = 0;
 let sum = 0;
 for (let i in arr) {
   sum += arr[i];
-  pfs.push(sum);
+  result += sum;
 }
 
-const result = pfs.reduce((acc, cur) => acc + cur, 0);
 console.log(result);

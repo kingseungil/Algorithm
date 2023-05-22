@@ -13,7 +13,7 @@ for (let i = 1; i <= N; i++) {
 arr.sort((a, b) => a[1] - b[1] || a[0] - b[0]);
 
 let answer = '';
-for (let i = 0; i < N; i++) {
-  answer += arr[i][0] + ' ' + arr[i][1] + '\n';
-}
+arr.forEach((item) => {
+  answer += `${item[0]} ${item[1]}\n`;
+});
 console.log(answer);

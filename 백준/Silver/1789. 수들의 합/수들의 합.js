@@ -1,6 +1,7 @@
 const fs = require('fs');
-// const input = fs.readFileSync('test.txt').toString().trim().split('\n');
-const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+const filePath =
+  process.platform === 'linux' ? '/dev/stdin' : __dirname + '/test.txt';
+const input = fs.readFileSync(filePath).toString().trim().split('\n');
 
 let s = +input;
 let sum = 0;

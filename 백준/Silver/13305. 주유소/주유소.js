@@ -7,17 +7,14 @@ const n = +input[0];
 const distances = input[1].split(' ').map(Number);
 const prices = input[2].split(' ').map(Number);
 
-const solution = (n, distances, prices) => {
-  let cost = 0;
-  let cheapest = prices[0];
+let minPrice = prices[0];
+for (let i = 0; i < n; i++) {
+  minPrice = Math.min(minPrice, prices[i]);
+  prices[i] = minPrice;
+}
 
-  for (let i = 0; i < n - 1; i++) {
-    if (prices[i] < cheapest) {
-      cheapest = prices[i];
-    }
-    cost += cheapest * distances[i];
-  }
-  return cost;
-};
-
-console.log(solution(n, distances, prices));
+let cost = BigInt(0);
+for (let i = 0; i < n - 1; i++) {
+  cost += BigInt(distances[i]) * BigInt(prices[i]);
+}
+console.log(String(cost));

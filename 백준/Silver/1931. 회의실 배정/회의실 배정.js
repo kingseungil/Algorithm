@@ -5,11 +5,7 @@ const input = fs.readFileSync(filePath).toString().trim().split('\n');
 
 const n = +input[0];
 
-let arr = [];
-for (let i = 1; i <= n; i++) {
-  const [start, end] = input[i].split(' ').map(Number);
-  arr.push([start, end]);
-}
+const arr = input.slice(1).map((v) => v.split(' ').map(Number));
 
 // 시작 시간과 끝나는 시간이 작은 회의 순으로 정렬
 // 끝나는 시간이 같은 경우, 시작 시간이 빠른 회의 순으로 정렬
@@ -20,16 +16,15 @@ const sortArray = (a, b) => {
   return a[1] - b[1];
 };
 
-arr.sort(sortArray);
+const sortedArr = arr.sort(sortArray);
 
 let count = 0;
 let endTime = 0;
-for (let i in arr) {
-  const [start, end] = arr[i];
+sortedArr.forEach(([start, end]) => {
   if (start >= endTime) {
-    count += 1;
     endTime = end;
+    count++;
   }
-}
+});
 
 console.log(count);

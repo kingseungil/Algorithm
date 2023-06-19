@@ -15,23 +15,24 @@ for (let i = 1; i <= K; i++) {
   arr.push(+input[i]);
 }
 
+// 이진 탐색을 위해 start,end 설정
 const start = 1;
 const end = Math.max(...arr);
 
 const parametricSearch = (arr, target, start, end) => {
   let result = 0;
   while (start <= end) {
-    let count = 0;
+    let count = 0; // 길이가 mid일 때 만들 수 있는 랜선의 개수
     let mid = Math.floor((start + end) / 2);
     for (const x of arr) {
       count += Math.floor(x / mid);
     }
-    // 조건에 충족
+    // 만들 수 있는 랜선의 개수가 충분한 경우 (길이를 늘려야 함)
     if (count >= target) {
       result = mid;
       start = mid + 1;
     }
-    // 조건에 충족X
+    // 만들 수 있는 랜선의 개수가 부족한 경우 (길이를 줄여야 함)
     else {
       end = mid - 1;
     }

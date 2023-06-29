@@ -8,6 +8,7 @@ const input = fs.readFileSync(filePath).toString().trim().split('\n');
 const N = +input[0];
 
 let result = [];
+let visited = Array.from({ length: N + 1 }, () => false);
 
 const dfs = (depth) => {
   if (depth === N) {
@@ -16,11 +17,12 @@ const dfs = (depth) => {
   }
 
   for (let i = 1; i <= N; i++) {
-    if (result.includes(i)) continue;
-
-    result.push(i);
-    dfs(depth + 1);
-    result.pop();
+    if (!visited[i]) {
+      visited[i] = true;
+      result[depth] = i;
+      dfs(depth + 1);
+      visited[i] = false;
+    }
   }
 };
 

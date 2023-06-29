@@ -28,4 +28,4 @@ const dfs = (depth) => {
 };
 
 dfs(0);
-console.log(result.trim());
+console.log(result);

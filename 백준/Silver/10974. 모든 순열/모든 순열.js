@@ -8,22 +8,24 @@ const input = fs.readFileSync(filePath).toString().trim().split('\n');
 const N = +input[0];
 
 let result = [];
-let visited = Array.from({ length: N + 1 }, () => false);
+let arr = Array.from({ length: N }, () => 0);
+let visited = Array.from({ length: N }, () => false);
 
 const dfs = (depth) => {
   if (depth === N) {
-    console.log(result.join(' '));
+    result += arr.join(' ') + '\n';
     return;
   }
 
   for (let i = 1; i <= N; i++) {
-    if (!visited[i]) {
-      visited[i] = true;
-      result[depth] = i;
-      dfs(depth + 1);
-      visited[i] = false;
-    }
+    if (visited[i]) continue;
+
+    arr[depth] = i;
+    visited[i] = true;
+    dfs(depth + 1);
+    visited[i] = false;
   }
 };
 
 dfs(0);
+console.log(result.trim());

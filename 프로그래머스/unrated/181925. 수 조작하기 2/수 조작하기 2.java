@@ -3,14 +3,12 @@ class Solution {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < numLog.length - 1; i++) {
-          if (numLog[i + 1] - numLog[i] == 1) {
-            sb.append("w");
-          } else if (numLog[i + 1] - numLog[i] == -1) {
-            sb.append("s");
-          } else if (numLog[i + 1] - numLog[i] == 10) {
-            sb.append("d");
-          } else if (numLog[i + 1] - numLog[i] == -10) {
-            sb.append("a");
+          int condition = numLog[i + 1] - numLog[i];
+          switch (condition) {
+            case 1 -> sb.append("w");
+            case -1 -> sb.append("s");
+            case 10 -> sb.append("d");
+            case -10 -> sb.append("a");
           }
         }
         

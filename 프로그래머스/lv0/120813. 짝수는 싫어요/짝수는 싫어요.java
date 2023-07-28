@@ -1,15 +1,9 @@
-import java.util.*;
+import java.util.stream.IntStream;
 
 class Solution {
     public int[] solution(int n) {
-        ArrayList<Integer> list = new ArrayList<>();
+        int[] result = IntStream.rangeClosed(1,n).filter(i -> i % 2 == 1).toArray();
         
-        for (int i = 1; i <= n; i++){
-            if(i % 2 == 1) list.add(i);
-        }
-
-    int[] result = list.stream().mapToInt(i -> i).toArray();
-    
-    return result;
+        return result;
     }
 }

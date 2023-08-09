@@ -9,11 +9,11 @@ class Solution {
             }
         }
         
+        resultList.sort(Integer::compareTo);
+        
         if(resultList.isEmpty()){
             resultList.add(-1);
         }
-        
-        resultList.sort(Integer::compareTo);
         
         return resultList.stream().mapToInt(Integer::intValue).toArray();
     }

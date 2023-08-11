@@ -27,8 +27,11 @@ public class Main {
 
     Queue<Integer> queue = new LinkedList<>();
     LinkedList<Integer> list = new LinkedList<>();
-    IntStream.rangeClosed(1, N).forEach(list::add);
-
+    // IntStream.rangeClosed(1, N).forEach(list::add);
+    for (int i = 1; i <= N; i++) {
+      list.add(i);
+    }
+      
     int index = 0;
     while (!list.isEmpty()) {
       index = (index + K - 1) % list.size();

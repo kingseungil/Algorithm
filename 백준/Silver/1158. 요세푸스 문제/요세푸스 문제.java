@@ -1,35 +1,48 @@
+// https://www.acmicpc.net/problem/1158 (요세푸스 문제) - 실버5
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.stream.IntStream;
 
-class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int N = scanner.nextInt();
-        int K = scanner.nextInt();
-        scanner.close();
+/*
+입력 N, K (1 ≤ K ≤ N ≤ 5,000)
+  N: 사람의 수
+  K: 순열의 크기
 
-        Queue queue = new LinkedList();
+출력 요세푸스 순열
+ */
+public class Main {
 
-        // N번까지 queue에 추가
-        IntStream.range(1, N + 1).forEach(x -> queue.add(x));
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] input = br.readLine().split(" ");
+    int N = Integer.parseInt(input[0]);
+    int K = Integer.parseInt(input[1]);
 
-        // String을 계속 추가,수정해야하므로 StringBuilder선언
-        StringBuilder sb = new StringBuilder();
-        sb.append("<");
+    StringBuilder result = new StringBuilder();
+    result.append("<");
 
-        while (queue.size()>1) {
-            for (int i = 1; i < K ; i++) {
-                // K번째 수 전까지 뺏다가 다시 넣기
-                int value = (int)queue.poll();
-                queue.offer(value);
-            }
-            // K번째수 poll하여 sb에 넣기
-            sb.append(queue.poll()).append(", ");
-        }
-        // 마지막엔 ,대신 > 넣기
-        sb.append(queue.poll()).append(">");
-        System.out.println(sb);
+    Queue<Integer> queue = new LinkedList<>();
+    LinkedList<Integer> list = new LinkedList<>();
+    IntStream.rangeClosed(1, N).forEach(list::add);
+
+    int index = 0;
+    while (!list.isEmpty()) {
+      index = (index + K - 1) % list.size();
+      queue.add(list.remove(index));
     }
+
+    while (!queue.isEmpty()) {
+      result.append(queue.poll());
+      if (!queue.isEmpty()) {
+        result.append(", ");
+      }
+    }
+
+    result.append(">");
+    System.out.println(result);
+  }
 }

@@ -26,6 +26,7 @@ class Solution {
         }
         
         answer = 1;
+        // 의상 종류별로 의상의 개수를 곱한 후, 아무것도 입지 않은 경우를 빼줌
         for (int count : counts){
             answer *= (count + 1);
         }

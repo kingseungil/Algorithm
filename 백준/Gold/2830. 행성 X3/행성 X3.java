@@ -19,7 +19,8 @@ public class Main {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    int[] bitCount = new int[21]; // 입력이 10^6까지 가능하므로 2^20까지의 비트를 저장할 수 있어야 함
+    // 입력이 10^6까지 가능하므로 2^20까지의 비트를 저장할 수 있어야 함
+    int[] bitCount = new int[21];
 
     int N = Integer.parseInt(br.readLine());
 
@@ -37,12 +38,15 @@ public class Main {
     for (int i = 0; i < 21; i++) {
       // 1의 개수가 i인 비트의 개수 * 0의 개수가 i인 비트의 개수
       long pair = (long) bitCount[i] * (N - bitCount[i]);
-      // i번째 비트의 가치는 2^i
+      // answer에 pair를 i만큼 왼쪽으로 시프트한 값을 더함 (i번째 비트의 가치는 2^i)
+      // answer += pair * Math.pow(2, i);
       answer += pair << i;
     }
 
     bw.write(answer + "\n");
     bw.flush();
+
     bw.close();
+    br.close();
   }
 }

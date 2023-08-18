@@ -1,47 +1,43 @@
 class Solution {
     public int solution(String s) {
-        int result = Integer.MAX_VALUE;
+         int min = s.length(); // 최대 길이는 s.length()이다.
 
-    // 문자열을 1개 단위부터 s.length() / 2 + 1개 단위까지 잘라서 압축한다.
-    for (int count = 1; count <= s.length() / 2 + 1; count++) {
-      StringBuilder sb = new StringBuilder();
-      int duplicate = 0;
+    // 주어진 문자열의 길이의 반 이상까지만 검사 (넘어가면 압축 불가능)
+    for (int length = 1; length <= s.length() / 2; length++) {
+      int compressedLength = compress(s, length);
+      min = Math.min(min, compressedLength);
+    }
+    return min;
+  }
 
-      // 문자열을 count개 단위로 잘라서 압축한다.
-      for (int i = 0; i < s.length(); i += count) {
-        String current = s.substring(i, Math.min(i + count, s.length()));
-        String next =
-          (i + count < s.length()) ? s.substring(i + count, Math.min(i + count + count, s.length()))
-            : ""; // 다음 문자열이 없으면 빈 문자열을 넣는다.
+  private static int compress(String source, int length) {
+    StringBuilder sb = new StringBuilder();
 
-        // 현재 문자열과 다음 문자열이 같으면 중복 횟수를 증가시킨다.
-        if (current.equals(next)) {
-          duplicate++;
-        } else {
-          // 중복된 문자열이 있었으면
-          if (duplicate > 0) {
-            sb.append(duplicate + 1); // 중복 횟수를 추가한다.
-            sb.append(current); // 중복된 문자열을 추가한다.
-            duplicate = 0; // 중복 횟수를 초기화한다.
-          } else {
-            // 중복된 문자열이 없었으면
-            sb.append(current); // 중복된 문자열이 없으면 그냥 추가한다.
-          }
+    String current = source.substring(0, length);
+    int countOfCurrent = 1;
+    for (int i = length; i < source.length(); i += length) {
+      String token = source.substring(i, Math.min(i + length, source.length()));
+
+      // 현재 문자열과 다음 문자열이 같으면 중복 횟수를 증가시킨다.
+      if (current.equals(token)) {
+        countOfCurrent++;
+      } else {
+        // 현재 문자열과 다음 문자열이 다르면
+        if (countOfCurrent > 1) {
+          sb.append(countOfCurrent);
         }
-      }
-
-      // 마지막 중복된 문자열을 추가한다.
-      if (duplicate > 0) {
-        sb.append(duplicate + 1);
-        sb.append(s.substring(s.length() - count)); // 마지막 중복 추가
-      }
-
-      // 최소 길이 업데이트
-      if (sb.length() < result) {
-        result = sb.length();
+        sb.append(current); // 중복이 아닌 문자열을 추가한다.
+        current = token; // 다음 문자열을 현재 문자열로 바꾼다.
+        countOfCurrent = 1; // 중복 횟수를 초기화한다.
       }
     }
 
-    return result;
+    // 마지막 문자열 처리
+    if (countOfCurrent > 1) {
+      sb.append(countOfCurrent);
     }
+    sb.append(current);
+
+    return sb.length();
+  }
 }

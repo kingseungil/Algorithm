@@ -7,7 +7,7 @@ class Solution {
         
         // 숫자 문자열을 숫자로 변환
         for (int i = 0; i < numStr.length; i++){
-            s = s.replaceAll(numStr[i], String.valueOf(i));
+            s = s.replace(numStr[i], Integer.toString(i));
         }
         
         // 숫자 문자열을 숫자로 변환한 문자열을 숫자로 변환

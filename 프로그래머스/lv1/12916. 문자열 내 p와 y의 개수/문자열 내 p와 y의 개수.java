@@ -5,10 +5,9 @@ class Solution {
         int yCount = 0;
         
         for (char c : s.toCharArray()) {
-            if (c == 'p' || c == 'P') {
-                pCount++;
-            } else if (c == 'y' || c == 'Y') {
-                yCount++;
+            switch (c) {
+                    case 'p','P' -> pCount++;
+                    case 'y','Y' -> yCount++;
             }
         }
         

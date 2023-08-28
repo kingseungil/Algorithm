@@ -2,6 +2,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/*
+https://www.acmicpc.net/problem/2167 (2차원 배열의 합)
+ */
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -20,17 +23,22 @@ public class Main {
             }
         }
 
-        // Compute the cumulative sum
+        // 누적합 배열 생성
         int[][] cumulativeSum = new int[numRows + 1][numCols + 1];
         for (int i = 1; i <= numRows; i++) {
             for (int j = 1; j <= numCols; j++) {
+                /*
+                arr[i - 1][j - 1] : 현재 위치의 값
+                cumulativeSum[i - 1][j] : 위쪽의 누적합
+                cumulativeSum[i][j - 1] : 왼쪽의 누적합
+                cumulativeSum[i - 1][j - 1] : 대각선의 누적합
+                 */
                 cumulativeSum[i][j] =
                   arr[i - 1][j - 1] + cumulativeSum[i - 1][j] + cumulativeSum[i][j - 1]
                     - cumulativeSum[i - 1][j - 1];
             }
         }
 
-        // Process queries
         int numQueries = Integer.parseInt(br.readLine());
         for (int i = 0; i < numQueries; i++) {
             String[] query = br.readLine().split(" ");

@@ -20,6 +20,16 @@ public class Main {
             }
         }
 
+        // Compute the cumulative sum
+        int[][] cumulativeSum = new int[numRows + 1][numCols + 1];
+        for (int i = 1; i <= numRows; i++) {
+            for (int j = 1; j <= numCols; j++) {
+                cumulativeSum[i][j] =
+                  arr[i - 1][j - 1] + cumulativeSum[i - 1][j] + cumulativeSum[i][j - 1]
+                    - cumulativeSum[i - 1][j - 1];
+            }
+        }
+
         // Process queries
         int numQueries = Integer.parseInt(br.readLine());
         for (int i = 0; i < numQueries; i++) {
@@ -29,18 +39,14 @@ public class Main {
             int endRow = Integer.parseInt(query[2]);
             int endCol = Integer.parseInt(query[3]);
 
-            int result = findSum(arr, startRow, startCol, endRow, endCol);
+            int result = findSum(cumulativeSum, startRow, startCol, endRow, endCol);
             System.out.println(result);
         }
     }
 
-    private static int findSum(int[][] arr, int startRow, int startCol, int endRow, int endCol) {
-        int sum = 0;
-        for (int i = startRow - 1; i < endRow; i++) {
-            for (int j = startCol - 1; j < endCol; j++) {
-                sum += arr[i][j];
-            }
-        }
-        return sum;
+    private static int findSum(int[][] cumulativeSum, int startRow, int startCol, int endRow,
+      int endCol) {
+        return cumulativeSum[endRow][endCol] - cumulativeSum[startRow - 1][endCol]
+          - cumulativeSum[endRow][startCol - 1] + cumulativeSum[startRow - 1][startCol - 1];
     }
 }

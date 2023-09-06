@@ -1,23 +1,21 @@
 import java.util.ArrayList;
 
 class Solution {
-    private static final char[] CHARS = "AEIOU".toCharArray();
+    private static final char[] ALPHABET = "AEIOU".toCharArray();
+    private static final int[] POWERS_OF_FIVE = {781, 156, 31, 6, 1};
 
     public static int solution(String word) {
-        return generateWords("").indexOf(word);
-    }
-    
-    private static ArrayList<String> generateWords(String word) {
-        ArrayList<String> words = new ArrayList<>();
-        words.add(word);
+        int answer = 0;
 
-        if (word.length() == 5) {
-            return words;
+        for (int i = 0; i < word.length(); i++) {
+            for (int j = 0; j < 5; j++) {
+                if (ALPHABET[j] == word.charAt(i)) {
+                    answer += 1 + j * POWERS_OF_FIVE[i];
+                    break;
+                }
+            }
         }
 
-        for (char c : CHARS) {
-            words.addAll(generateWords(word + c));
-        }
-        return words;
+        return answer;
     }
 }

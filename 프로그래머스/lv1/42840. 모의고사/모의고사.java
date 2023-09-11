@@ -2,9 +2,17 @@ import java.util.*;
 
 class Solution {
     
-    static final int[] FIRST = {1, 2, 3, 4, 5};
-    static final int[] SECOND = {2, 1, 2, 3, 2, 4, 2, 5};
-    static final int[] THIRD = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+    private static final int[][] RULES = {
+      {1, 2, 3, 4, 5},
+      {2, 1, 2, 3, 2, 4, 2, 5},
+      {3, 3, 1, 1, 2, 2, 4, 4, 5, 5}
+    };
+    
+    private static int getPicked(int person, int problem) {
+        int[] rule = RULES[person];
+        int idx = problem % rule.length;
+        return rule[idx];
+    }
     
     public int[] solution(int[] answers) {
         ArrayList<Integer> result = new ArrayList<>();
@@ -16,18 +24,22 @@ class Solution {
 
         // answer 만큼 반복
         for (int i = 0; i < answers.length; i++) {
+            int answer = answers[i];
             // 각 수포자들의 정답 개수 계산
-            if (answers[i] == FIRST[i % FIRST.length]) {
-                firstCount++;
-            }
-            if (answers[i] == SECOND[i % SECOND.length]) {
-                secondCount++;
-            }
-            if (answers[i] == THIRD[i % THIRD.length]) {
-                thirdCount++;
+            for (int person = 0; person < 3; person++) {
+                int picked = getPicked(person, i);
+                if (answer == picked) {
+                    if (person == 0) {
+                        firstCount++;
+                    } else if (person == 1) {
+                        secondCount++;
+                    } else {
+                        thirdCount++;
+                    }
+                }
             }
         }
-
+        
         // 가장 많이 맞춘 사람 찾기 (value 값이 가장 큰 key 값 찾기)
         // value값이 같은 경우 여러명이므로 모두 찾기
         int max = Math.max(Math.max(firstCount, secondCount), thirdCount);

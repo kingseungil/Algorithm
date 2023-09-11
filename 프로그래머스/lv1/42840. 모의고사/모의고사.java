@@ -44,6 +44,10 @@ class Solution {
         // 가장 많이 맞춘 사람이 여럿일 경우 오름차순 정렬
         result.sort((o1, o2) -> o1 - o2);
 
-        return result.stream().mapToInt(i -> i).toArray();
+        int[] answer = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            answer[i] = result.get(i);
+        }
+        return answer;
     }
 }

@@ -3,11 +3,15 @@ import java.util.*;
 class Solution {
     public int solution(String s) {
        int count = 0;
+        char[] str = s.toCharArray();
+
+        if (str.length == 0 || str.length % 2 == 1) {
+            return 0;
+        }
 
         // 0 ~ s.length() - 1 까지 회전
-        for (int i = 0; i < s.length(); i++) {
-            String rotated = s.substring(i) + s.substring(0, i);
-            if (check(rotated)) {
+        for (int offset = 0; offset < s.length(); offset++) {
+            if (check(str, offset)) {
                 count++;
             }
         }
@@ -15,9 +19,11 @@ class Solution {
         return count;
     }
     
-    private static boolean check(String s) {
+    private static boolean check(char[] s, int offset) {
         Stack<Character> stack = new Stack<>();
-        for (char c : s.toCharArray()) {
+
+        for (int i = 0; i < s.length; i++) {
+            char c = s[(offset + i) % s.length]; // 회전한 문자열의 인덱스
             switch (c) {
                 case '(' -> stack.push(')');
                 case '[' -> stack.push(']');

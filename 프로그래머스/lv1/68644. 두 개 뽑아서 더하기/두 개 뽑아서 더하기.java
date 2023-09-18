@@ -2,7 +2,7 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] numbers) {
-        Set<Integer> set = new HashSet<>();
+        Set<Integer> set = new TreeSet<>();
 
         // 두 수를 뽑아서 더한 값들을 set에 저장한다.
         for (int i = 0; i < numbers.length; i++) {
@@ -13,7 +13,6 @@ class Solution {
         }
 
         return set.stream()
-                  .sorted()
                   .mapToInt(Integer::intValue)
                   .toArray();
     }

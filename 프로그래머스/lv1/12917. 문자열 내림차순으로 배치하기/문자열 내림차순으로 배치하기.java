@@ -3,9 +3,13 @@ import java.util.*;
 class Solution {
     public String solution(String s) {
         return s.chars()
-                .boxed()
-                .sorted(Comparator.reverseOrder())
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
+                    .boxed()
+                    .sorted(Comparator.reverseOrder())
+                    .collect(
+                        StringBuilder::new,
+                        StringBuilder::appendCodePoint,
+                        StringBuilder::append
+                    )
+                    .toString();
     }
 }

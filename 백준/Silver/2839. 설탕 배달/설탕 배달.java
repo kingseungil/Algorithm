@@ -15,20 +15,27 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         FastReader rd = new FastReader();
-
         int N = rd.nextInt();
 
-        Arrays.fill(dp, Integer.MAX_VALUE);
+        // 그리디
+        System.out.println(greedy(N));
+    }
 
-        dp[3] = dp[5] = 1;
+    // 그리디
+    private static int greedy(int N) {
+        int count = 0;
 
-        for (int i = 6; i <= N; i++) {
-            if (dp[i - 3] != Integer.MAX_VALUE || dp[i - 5] != Integer.MAX_VALUE) {
-                dp[i] = Math.min(dp[i - 3], dp[i - 5]) + 1;
+        while (N > 0) {
+            if (N % 5 == 0) {
+                count += N / 5;
+                N %= 5;
+            } else {
+                N -= 3;
+                count++;
             }
         }
 
-        System.out.println(dp[N] == Integer.MAX_VALUE ? -1 : dp[N]);
+        return N == 0 ? count : -1;
     }
 
     static class FastReader {
